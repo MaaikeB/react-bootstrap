@@ -99,6 +99,21 @@ describe('Modal', function () {
     ReactTestUtils.Simulate.click(dialog);
   });
 
+  it('Should not close the modal when the "static" backdrop is clicked', function () {
+    let onHideSpy = sinon.spy();
+    let instance = render(
+      <Modal show onHide={onHideSpy} backdrop='static'>
+        <strong>Message</strong>
+      </Modal>
+    , mountPoint);
+
+    let backdrop = React.findDOMNode(instance.refs.backdrop);
+
+    ReactTestUtils.Simulate.click(backdrop);
+
+    expect(onHideSpy).to.not.have.been.called;
+  });
+
   it('Should close the modal when the modal close button is clicked', function (done) {
     let doneOp = function () { done(); };
 
@@ -113,6 +128,19 @@ describe('Modal', function () {
         .getElementsByClassName('close')[0];
 
     ReactTestUtils.Simulate.click(button);
+  });
+
+  it('Should pass className to the dialog', function () {
+    let noOp = function () {};
+    let instance = render(
+      <Modal show className='mymodal' onHide={noOp}>
+        <strong>Message</strong>
+      </Modal>
+    , mountPoint);
+
+    let dialog = React.findDOMNode(instance.refs.dialog);
+
+    assert.ok(dialog.className.match(/\bmymodal\b/));
   });
 
   it('Should use bsClass on the dialog', function () {
@@ -160,6 +188,33 @@ describe('Modal', function () {
     assert.match(dialog.props.className, /\btestCss\b/);
   });
 
+  it('Should assign refs correctly when no backdrop', function () {
+
+    let test = () => render(
+      <Modal show backdrop={false} onHide={function () {}}>
+        <strong>Message</strong>
+      </Modal>
+    , mountPoint);
+
+    expect(test).not.to.throw();
+  });
+
+  it('Should use dialogComponent', function () {
+    let noOp = function () {};
+
+    class CustomDialog {
+      render(){ return <div {...this.props}/>; }
+    }
+
+    let instance = render(
+      <Modal show dialogComponent={CustomDialog} onHide={noOp}>
+        <strong>Message</strong>
+      </Modal>
+    , mountPoint);
+
+    assert.ok(instance.refs.dialog instanceof CustomDialog);
+  });
+
   it('Should pass transition callbacks to Transition', function (done) {
     let count = 0;
     let increment = ()=> count++;
@@ -184,6 +239,22 @@ describe('Modal', function () {
         <strong>Message</strong>
       </Modal>
       , mountPoint);
+  });
+
+  it('Should unbind listeners when unmounted', function() {
+    render(
+        <div>
+          <Modal show onHide={() => null} animation={false}>
+            <strong>Foo bar</strong>
+          </Modal>
+        </div>
+    , mountPoint);
+
+    assert.include(document.body.className, 'modal-open');
+
+    render(<div />, mountPoint);
+
+    assert.notInclude(document.body.className, 'modal-open');
   });
 
   describe('Focused state', function () {

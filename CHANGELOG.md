@@ -1,3 +1,39 @@
+v0.24.5 - Fri, 14 Aug 2015 18:02:13 GMT
+---------------------------------------
+
+- [dc2a07a](../../commit/dc2a07a) [fixed] Collapse exported as Fade
+- [f53bcf5](../../commit/f53bcf5) [fixed] 'bsSize' and 'bsStyle' properties has been removed from 'Glyphicon'
+
+
+
+v0.24.4 - Mon, 10 Aug 2015 19:33:35 GMT
+---------------------------------------
+
+- [b688014](../../commit/b688014) [added] custom feedback icons for Input
+- [83cdaa3](../../commit/83cdaa3) [added] formControlFeedback prop to Glyphicon
+- [2ecac68](../../commit/2ecac68) [fixed] Modal uses provided className again
+- [47bd7f6](../../commit/47bd7f6) [fixed] disabled pagination buttons should not fire 'onSelect'
+- [c60dc03](../../commit/c60dc03) [fixed] only add aria-expanded to Collapse when an ARIA role is present
+
+
+
+v0.24.3 - Fri, 31 Jul 2015 18:09:54 GMT
+---------------------------------------
+
+- [02f8966](../../commit/02f8966) [changed] Update dependencies
+- [bae8ba9](../../commit/bae8ba9) [fixed] Carousel checks if it is mounted before setting state
+- [fd8d4d2](../../commit/fd8d4d2) [fixed] regression when clicking "static" modal backdrops
+- [0f46a97](../../commit/0f46a97) [added] Allow custom Modal dialog components
+- [a4ce7e1](../../commit/a4ce7e1) [fixed] added finalisation for the Modal when it was unbound from the tree
+- [d89d5f3](../../commit/d89d5f3) [fixed] Modal error when backdrop is `false`
+- [f410904](../../commit/f410904) [added] 'xs, sm, md, lg' values for 'bsSize'
+- [2558f32](../../commit/2558f32) [fixed] TabbedArea panes rendering with animation
+- [90aece6](../../commit/90aece6) [changed] Simplify 'styleMaps.STYLES' to be of Array type
+- [860d168](../../commit/860d168) [fixed] allow totally custom styles via 'bsStyle'
+- [74da76a](../../commit/74da76a) [fixed] Prevent click on PageItem if disabled
+
+
+
 v0.24.2 - Sat, 25 Jul 2015 00:47:07 GMT
 ---------------------------------------
 
